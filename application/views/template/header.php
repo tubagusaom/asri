@@ -6,6 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="<?php echo base_url().'gambar/logoasri.png'?>" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="<?php echo base_url().'gambar/logoasri.png'?>">
+
 	<script type="application/x-javascript">
 		addEventListener("load", function() {
 			setTimeout(hideURLbar, 0);
@@ -30,7 +34,7 @@
 	<script src="<?php echo base_url().'web/js/jquery.slimscroll.min.js'?>"></script>
 	<!-- Custom and plugin javascript -->
 	<link href="<?php echo base_url().'web/css/custom.css'?>" rel="stylesheet">
-	
+
 	<script src="<?php echo base_url().'web/js/custom.js'?>"></script>
 	<script src="<?php echo base_url().'web/js/screenfull.js'?>"></script>
 	<script src="<?php echo base_url().'web/js/jquery.min.js'?>"> </script>
