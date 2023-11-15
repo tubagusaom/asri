@@ -49,12 +49,14 @@ class Inbox extends CI_Controller{
 
 						$x['pesan']=$this->m_kontak->get_all_inboxdepan($offset,$limit);
 
+						$data['bootstrapjs']="web/js/bootstrap.min.js";
+
 						$id_admin=$this->session->userdata('idadmin');
 			            $q=$this->db->query("SELECT * FROM admin WHERE idadmin='$id_admin'");
 			            $data['admin_detail']=$q->row_array();
 
 			                        
-			            $this->load->view('template/header');
+			            $this->load->view('template/header',$data);
 			            $this->load->view('template/menu',$data);
 						$this->load->view('front/v_inbox',$x);
             			// $this->load->view('template/footer');

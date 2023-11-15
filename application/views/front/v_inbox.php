@@ -11,30 +11,25 @@
 		    </div>
 		<!--//banner-->
  	<!--grid-->
+
+
  	 	 <div class=" profile">
- 	 <div class="inbox-mail">
-	<div class="col-md-4 compose">
-	<form action="<?php echo base_url().'backend/inbox/search'?>" method="post">
-		<div class="input-group input-group-in">
-				<input type="text" name="keyword" class="form-control2 input-search" placeholder="Search...">
-				<span class="input-group-btn">
-						<button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
-				</span>
-		</div><!-- Input Group -->
-            </form>
+         	 <div class="inbox-mail">
 
+        	<div class="col-md-4 compose">
+        	<form action="<?php echo base_url().'backend/inbox/search'?>" method="post">
+        		<div class="input-group input-group-in">
+        				<input type="text" name="keyword" class="form-control2 input-search" placeholder="Search...">
+        				<span class="input-group-btn">
+        						<button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
+        				</span>
+        		</div><!-- Input Group -->
+                    </form>
 
-
-
-			<div class="col-md-12 bojal">
-
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalAddNew"><span class="fa fa-plus"></span> &nbsp; Add New Topics</button>
-
-				</div>
-
-
-
-</div>
+        			<div class="col-md-12 bojal">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalAddNew"><span class="fa fa-plus"></span> &nbsp; Add New Topics</button>
+        			</div>
+        </div>
 <!-- tab content -->
 <div class="col-md-8 tab-content tab-content-in">
 <div class="tab-pane active text-style" id="tab1">
@@ -104,6 +99,7 @@
 
    </div>
 
+
    <div class="modal" id="ModalAddNew" tabindex="-1" role="dialog" aria-labelledby="modal-normal" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
@@ -124,7 +120,8 @@
                         </div>
                           <div class="form-group">
                             <label>Isi Topics</label>
-                               <textarea class="form-control w-100" name="pesan"  cols="30" rows="5"  ></textarea>
+                               <!-- <textarea id="ckeditor" class="form-control w-100" name="pesan"  cols="30" rows="5"  ></textarea> -->
+                               <textarea id="ckeditor" name="pesan" required></textarea>
 
                           </div>
                             <div class="form-group">
@@ -144,6 +141,23 @@
               </div>
           </div>
       </div>
+
+      <script src="<?php echo base_url().'assets/ckeditor/ckeditor.js'?>"></script>
+      <script src="<?php echo base_url().'assets/plugins/select2/select2.full.min.js'?>"></script>
+
+      <script type="text/javascript">
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    
+    CKEDITOR.replace('ckeditor');
+   //Initialize Select2 Elements
+  $(".select2").select2();
+    
+  });
+</script>
+
+
 
 
 

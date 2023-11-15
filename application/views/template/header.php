@@ -21,19 +21,21 @@
 	<link href="<?php echo base_url().'web/css/_all-skins.min.css'?>" rel='stylesheet' type='text/css' />
 
 	<!-- Select2 -->
- <link rel="stylesheet" href="<?php echo base_url().'assets/plugins/select2/select2.min.css'?>">
+ 	<link rel="stylesheet" href="<?php echo base_url().'assets/plugins/select2/select2.min.css'?>">
 
 	<link href="<?php echo base_url().'web/css/font-awesome.css'?>" rel="stylesheet">
-	<script src="<?php echo base_url().'web/js/jquery.min.js'?>"> </script>
-<script src="<?php echo base_url().'web/js/bootstrap.min.js'?>"> </script>
 	
 	<!-- Mainly scripts -->
 	<script src="<?php echo base_url().'web/js/jquery.metisMenu.js'?>"></script>
 	<script src="<?php echo base_url().'web/js/jquery.slimscroll.min.js'?>"></script>
 	<!-- Custom and plugin javascript -->
 	<link href="<?php echo base_url().'web/css/custom.css'?>" rel="stylesheet">
+	
 	<script src="<?php echo base_url().'web/js/custom.js'?>"></script>
 	<script src="<?php echo base_url().'web/js/screenfull.js'?>"></script>
+	<script src="<?php echo base_url().'web/js/jquery.min.js'?>"> </script>
+	<script src="<?= base_url().$bootstrapjs?>"> </script>
+
 	<script>
 		$(function() {
 			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);

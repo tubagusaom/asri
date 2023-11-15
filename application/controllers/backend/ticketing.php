@@ -50,11 +50,13 @@ class Ticketing extends CI_Controller{
 					$data['dept']=$this->session->userdata('dept');
 				$data['all']=$get;
 
+				$data['bootstrapjs']="web/js/bootstrap.min.js";
+
+
 				$id_admin=$this->session->userdata('idadmin');
 				$q=$this->db->query("SELECT * FROM admin WHERE idadmin='$id_admin'");
-				$data['admin_detail']=$q->row_array();
-						
-				$this->load->view('template/header');
+				$data['admin_detail']=$q->row_array();						
+				$this->load->view('template/header',$data);
 				$this->load->view('template/menu',$data);
 				$this->load->view('front/v_tiket',$data);
 		        // $this->load->view('template/footer');
