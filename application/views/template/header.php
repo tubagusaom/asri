@@ -7,8 +7,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="<?php echo base_url().'gambar/logoasri.png'?>" type="image/x-icon" />
-	<link rel="apple-touch-icon" href="<?php echo base_url().'gambar/logoasri.png'?>">
+	<link rel="shortcut icon" href="<?php echo base_url().'gambar/icon.png'?>" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="<?php echo base_url().'gambar/icon.png'?>">
 
 	<script type="application/x-javascript">
 		addEventListener("load", function() {
