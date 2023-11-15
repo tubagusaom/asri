@@ -52,11 +52,13 @@ class Inbox extends CI_Controller{
 						$id_admin=$this->session->userdata('idadmin');
 			            $q=$this->db->query("SELECT * FROM admin WHERE idadmin='$id_admin'");
 			            $data['admin_detail']=$q->row_array();
+
 			                        
 			            $this->load->view('template/header');
 			            $this->load->view('template/menu',$data);
 						$this->load->view('front/v_inbox',$x);
-            			$this->load->view('template/footer');
+            			// $this->load->view('template/footer');
+            			$this->load->view('front/footer');
 
 				}else{
 					echo $this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert"><span class="fa fa-close"></span></button>Maaf Anda Tidak Bisa Login <br> Karena Email Anda Belum Terverifikasi:</div>');

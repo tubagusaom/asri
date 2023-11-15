@@ -57,7 +57,8 @@ class Ticketing extends CI_Controller{
 				$this->load->view('template/header');
 				$this->load->view('template/menu',$data);
 				$this->load->view('front/v_tiket',$data);
-		        $this->load->view('template/footer');
+		        // $this->load->view('template/footer');
+		        $this->load->view('front/footer');
 
 
 		}else{

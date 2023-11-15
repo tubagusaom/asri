@@ -104,15 +104,15 @@
 
    </div>
 
-      <div class="modal" id="ModalAddNew" tabindex="-1" role="dialog" aria-labelledby="modal-normal" aria-hidden="true">
+   <div class="modal" id="ModalAddNew" tabindex="-1" role="dialog" aria-labelledby="modal-normal" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
-                  	<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h2 class="modal-title"><span class="fa fa-plus"></span>&nbsp; Add New Topics</h2>
-							</div>
-			<form  method="post" action="<?php echo base_url().'backend/inbox/simpan_pesan'?>" enctype="multipart/form-data">
-                   	<div class="modal-body">
+                    <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h2 class="modal-title"><span class="fa fa-plus"></span>&nbsp; Add New Topics</h2>
+                            </div>
+            <form  method="post" action="<?php echo base_url().'backend/inbox/simpan_pesan'?>" enctype="multipart/form-data">
+                    <div class="modal-body">
 
 
                         <div class="form-group">
@@ -144,3 +144,12 @@
               </div>
           </div>
       </div>
+
+
+
+
+
+      
+
+
+
