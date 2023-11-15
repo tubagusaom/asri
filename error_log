@@ -1,0 +1,18 @@
+[14-Dec-2022 17:00:18 UTC] PHP Deprecated:  Optional parameter $level declared before required parameter $message is implicitly treated as a required parameter in /home/deelabs/public_html/asri_connect/system/core/Common.php on line 349
+[14-Dec-2022 17:00:18 UTC] PHP Fatal error:  Uncaught TypeError: filter_var(): Argument #3 ($options) must be of type array|int, string given in /home/deelabs/public_html/asri_connect/system/core/Input.php:391
+Stack trace:
+#0 /home/deelabs/public_html/asri_connect/system/core/Input.php(391): filter_var('156.67.212.1', 275, '')
+#1 /home/deelabs/public_html/asri_connect/system/core/Input.php(354): CI_Input->valid_ip('156.67.212.1')
+#2 /home/deelabs/public_html/asri_connect/system/libraries/Session.php(314): CI_Input->ip_address()
+#3 /home/deelabs/public_html/asri_connect/system/libraries/Session.php(108): CI_Session->sess_create()
+#4 /home/deelabs/public_html/asri_connect/system/core/Loader.php(1099): CI_Session->__construct()
+#5 /home/deelabs/public_html/asri_connect/system/core/Loader.php(975): CI_Loader->_ci_init_class('session', '', NULL, NULL)
+#6 /home/deelabs/public_html/asri_connect/system/core/Loader.php(216): CI_Loader->_ci_load_class('Session', NULL, NULL)
+#7 /home/deelabs/public_html/asri_connect/system/core/Loader.php(1178): CI_Loader->library('session')
+#8 /home/deelabs/public_html/asri_connect/system/core/Loader.php(152): CI_Loader->_ci_autoloader()
+#9 /home/deelabs/public_html/asri_connect/system/core/Controller.php(51): CI_Loader->initialize()
+#10 /home/deelabs/public_html/asri_connect/application/controllers/administrator.php(4): CI_Controller->__construct()
+#11 /home/deelabs/public_html/asri_connect/system/core/CodeIgniter.php(308): Administrator->__construct()
+#12 /home/deelabs/public_html/asri_connect/index.php(202): require_once('/home/deelabs/p...')
+#13 {main}
+  thrown in /home/deelabs/public_html/asri_connect/system/core/Input.php on line 391
