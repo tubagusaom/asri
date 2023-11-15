@@ -7,6 +7,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+<meta name="description" content="IT portal ASRI">
+	<meta name="keywords" content="terabytee" />
+	<meta name="author" content="aom.my.id">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="<?php echo base_url().'gambar/icon.png'?>" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="<?php echo base_url().'gambar/icon.png'?>">
+
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="<?php echo base_url().'web/css/bootstrap.min.css'?>" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->

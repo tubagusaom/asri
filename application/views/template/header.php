@@ -2,9 +2,13 @@
 <html>
 
 <head>
-	<title>asri-connect</title>
+	<title><?=$this->session->userdata('dept')?> | asri-connect</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="description" content="IT portal ASRI">
+	<meta name="keywords" content="terabytee" />
+	<meta name="author" content="aom.my.id">
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="<?php echo base_url().'gambar/icon.png'?>" type="image/x-icon" />

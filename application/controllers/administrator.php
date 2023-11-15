@@ -4,9 +4,11 @@ class Administrator extends CI_Controller{
         parent:: __construct();
         $this->load->model('mlogin');
     }
+    
     function index(){
         $this->load->view('front/v_login');
     }
+
     function auth(){
         $username=strip_tags(str_replace("'", "", $this->input->post('username')));
         $password=strip_tags(str_replace("'", "", $this->input->post('password')));
