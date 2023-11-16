@@ -25,61 +25,52 @@
 									</div>
 										<div class="col-md-6">
 											<div class="float-right">
-
-																				<div class="btn-group">
-																				    <?php echo $page; ?>
-																					
-																				</div>
-
-
-											</div>
+												<div class="btn-group">
+													<?php echo $page; ?>
 												</div>
+											</div>
+										</div>
 		<!--//banner-->
 		<div class="clearfix"></div>
 			</div>
- 	 <!--gallery-->
- 	 <div class=" profile">
-		 <?php
-		 			foreach ($event->result_array() as $b) {
-		 					$idberita=$b['idevent'];
-		 					$judul=$b['judul'];
-		 					$isi=limit_words($b['isi'],15);
-		 					$tglpost=$b['tglpost'];
-		 					$gbr=$b['gambar'];
-		 					$user=$b['user'];
-		 					$hari=$b['hari'];
-		 					 $tgl=$b['tglpelaksanaan'];
-		 					 
-		 	?>
+		<!--gallery-->
+		<div class=" profile">
+
+		<?php
+			foreach ($event as $b) {
+			$isi=$limit_event[$b['idevent']];
+		?>
+
 		<div class="profil-bottom">
-
 			<div class="profile-bottom-top">
-				<div class="col-md-2 profile-hari">
-				
-				
-														<h6><?php echo $tgl; ?></h6>
-														<h6><?php echo $hari; ?></h6> 
-															 
+				<!-- <div class="col-md-2 profile-hari">
+					<h6 style="font-size:16px"><?= $b['hari'] . ', ' .$b['tglpelaksanaan']; ?></h6>
+				</div> -->
+				<div class="col-md-8 profile-text">
+					<h6 style="font-size:22px"><?=$b['judul']; ?></h6>
+					<h6 class="text-date">
+						<i class="fa fa-calendar"></i>
+						<?= $b['hari'] . ', ' .$this->terabytee->tgl_indo($b['tglpelaksanaan']); ?>
+					</h6>
+					<p>
+						<?=$isi; ?>
+						<a class="btn btn-link" href="<?= base_url().'backend/event/detail_event/'.$b['idevent'];?>" >
+							Read More <i class="fa fa-angle-double-right "></i>
+						</a>
+					</p>
+					<!-- <div class="profile-btn">
+						<a href="<?= base_url().'backend/event/detail_event/'.$b['idevent'];?>" >Read More >></a>
+					</div> -->
+				</div>
 
+				<div class="col-md-4 profile-bottom-img">
+					<img width="340px" height="300px" src="<?= base_url().'assets/gambars/'.$b['gambar'];?>" alt="" />
+				</div>
+				<div class="clearfix"></div>
 			</div>
-			<div class="col-md-6 profile-text">
-				<h6><?php echo $judul; ?></h6>
-				<p><?php echo $isi; ?></p>
-        <div class="profile-btn">
-                  
-                  <a href="<?php echo base_url().'backend/event/detail_event/'.$idberita;?>" >Read More >></a>
-
-        </div>
-			</div>
-
-			<div class="col-md-4 profile-bottom-img">
-		 <img width="340px" height="300px" src="<?php echo base_url().'assets/gambars/'.$gbr;?>" alt="" />
 		</div>
-			<div class="clearfix"></div>
-			</div>
-		</div>
-<?php }; ?>
+
+		<?php }; ?>
 
 	</div>
-	<!--//gallery-->
 		

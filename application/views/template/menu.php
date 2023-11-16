@@ -15,11 +15,15 @@
       <ul class=" nav_1">
 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret"><?php echo $admin_detail['username'];?><i class="caret"></i></span><img src=""></a>
+          <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown">
+          <img class="profil-img" src="<?= base_url().'gambar/'.$admin_detail['photo'];?>">
+            <span class=" name-caret"><?php echo $admin_detail['username'];?>
+              <i class="caret"></i>
+            </span>
+          </a>
           <ul class="dropdown-menu " role="menu">
-
+            <li class="<?=$this->uri->segment(2) == 'profil' ? 'active':'' ?>"><a href="<?php echo base_url().'backend/profil'?>"><i class="fa fa-user pull-right"></i>Profil</a></li>
             <li><a href="<?php echo base_url().'administrator/logout'?>"><i class="fa fa-sign-out pull-right"></i>Log Out</a></li>
-
           </ul>
         </li>
 
@@ -60,15 +64,6 @@
               </a>
             </li>
 
-            <li class="<?=$this->uri->segment(2) == 'karyawan' ? 'active':'' ?>">
-              <a href="<?php echo base_url().'backend/karyawan'?>">
-                <i class="fa fa fa-group"></i> <span>Employee Directory</span>
-                <span class="pull-right-container">
-                  <small class="label pull-right"></small>
-                </span>
-              </a>
-            </li>
-
             <li class="<?=$this->uri->segment(2) == 'library' ? 'active':'' ?>">
               <a href="<?php echo base_url().'backend/library'?>">
                 <i class="fa fa-book"></i> <span>Library</span>
@@ -78,9 +73,9 @@
               </a>
             </li>
 
-            <li class="<?=$this->uri->segment(2) == 'inbox' ? 'active':'' ?>">
-              <a href="<?php echo base_url().'backend/inbox'?>">
-                <i class="fa fa-commenting-o"></i> <span>Discussion Forum</span>
+            <li class="<?=$this->uri->segment(2) == 'karyawan' ? 'active':'' ?>">
+              <a href="<?php echo base_url().'backend/karyawan'?>">
+                <i class="fa fa fa-group"></i> <span>Employee Directory</span>
                 <span class="pull-right-container">
                   <small class="label pull-right"></small>
                 </span>
@@ -96,6 +91,15 @@
               </a>
             </li>
 
+            <li class="<?=$this->uri->segment(2) == 'active_directory' ? 'active':'' ?>">
+              <a href="<?php echo base_url().'backend/active_directory'?>">
+                <i class="fa fa-folder"></i> <span>Active Directory</span>
+                <span class="pull-right-container">
+                  <small class="label pull-right"></small>
+                </span>
+              </a>
+            </li>
+
             <li class="<?=$this->uri->segment(2) == 'ticketing' ? 'active':'' ?>">
               <a href="<?php echo base_url().'backend/ticketing'?>">
                 <i class="fa fa-headphones"></i> <span>Ticketing</span>
@@ -105,14 +109,23 @@
               </a>
             </li>
 
-            <li class="<?=$this->uri->segment(2) == 'profil' ? 'active':'' ?>">
+            <li class="<?=$this->uri->segment(2) == 'inbox' ? 'active':'' ?>">
+              <a href="<?php echo base_url().'backend/inbox'?>">
+                <i class="fa fa-commenting-o"></i> <span>Discussion Forum</span>
+                <span class="pull-right-container">
+                  <small class="label pull-right"></small>
+                </span>
+              </a>
+            </li>
+
+            <!-- <li class="<?=$this->uri->segment(2) == 'profil' ? 'active':'' ?>">
               <a href="<?php echo base_url().'backend/profil'?>">
                 <i class="fa fa-users"></i> <span>Profil</span>
                 <span class="pull-right-container">
                   <small class="label pull-right"></small>
                 </span>
               </a>
-            </li>
+            </li> -->
 
 
           </ul>

@@ -7,27 +7,30 @@ class Event extends CI_Controller{
             redirect($url);
         };
         
-				$this->load->model('mberita');
+        $this->load->library('terabytee');
+		$this->load->model('mberita');
 	}
 
 	function index(){
 		if($this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
-		    if($this->session->userdata('is_active')=='1'){
-		        $jum=$this->mberita->count_event();
-            $page=$this->uri->segment(4);
+            if($this->session->userdata('is_active')=='1'){
+                $jum=$this->mberita->count_event();
+                $page=$this->uri->segment(4);
+
             if(!$page):
-            $offset = 0;
-             else:
-            $offset = $page;
+                $offset = 0;
+            else:
+                $offset = $page;
             endif;
-            $limit=4;
-            $config['base_url'] = base_url() . 'backend/event/index/';
-            $config['total_rows'] = $jum->num_rows();
-            $config['per_page'] = $limit;
-            $config['uri_segment'] = 4;
-            $config['first_link'] = 'Awal';
-            $config['last_link'] = 'Akhir';
-						$config['next_link']        = 'Next';
+
+        $limit=4;
+        $config['base_url'] = base_url() . 'backend/event/index/';
+        $config['total_rows'] = $jum->num_rows();
+        $config['per_page'] = $limit;
+        $config['uri_segment'] = 4;
+        $config['first_link'] = 'Awal';
+        $config['last_link'] = 'Akhir';
+		$config['next_link']        = 'Next';
         $config['prev_link']        = 'Prev';
         $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
         $config['full_tag_close']   = '</ul></nav></div>';
@@ -45,8 +48,12 @@ class Event extends CI_Controller{
         $config['last_tagl_close']  = '</span></li>';
             $this->pagination->initialize($config);
             $x['page'] =$this->pagination->create_links();
-		    $x['event']=$this->mberita->get_event($offset,$limit);
-		    
+
+            $x['event']=$this->mberita->get_event($offset,$limit);
+			$event = $x['event'];
+			$x['limit_event']=$this->terabytee->limit_event($event,18);
+
+            // var_dump($x['event']); die();
 
 		    	$id_admin=$this->session->userdata('idadmin');
 				$q=$this->db->query("SELECT * FROM admin WHERE idadmin='$id_admin'");

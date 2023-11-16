@@ -647,6 +647,8 @@ class CI_URI {
 		return '/'.implode('/', $this->rsegment_array());
 	}
 
+	
+
 }
 // END URI Class
 

@@ -57,11 +57,13 @@ class Mberita extends CI_Model{
 	}
 	function get_event($offset,$limit){
 		$hasil=$this->db->query("SELECT event.*,DATE_FORMAT(tglpelaksanaan,'%d %M %Y') AS tanggal FROM event order by tglpost DESC limit $offset,$limit");
-		return $hasil;
+		$data = $hasil->result_array();
+		return $data;
 	}
 	function get_news($offset,$limit){
 		$hasil=$this->db->query("SELECT * FROM berita order by tglpost DESC limit $offset,$limit");
-		return $hasil;
+		$data = $hasil->result_array();
+		return $data;
 	}
 
 	function get_photo(){
@@ -122,14 +124,23 @@ class Mberita extends CI_Model{
 		$hasil=$this->db->query("select * from berita where idberita='$kode'");
 		return $hasil;
 	}
-	function filter_infor($limit){
-		$hasil=$this->db->query("select * from berita where kategori='information' order by tglpost DESC limit $limit");
-		return $hasil;
-	}
-	function filter_pengu($limit){
+	
+	// function filter_infor($limit){
+	// 	$hasil=$this->db->query("select * from berita where kategori='information' order by tglpost DESC limit $limit");
+	// 	return $hasil;
+	// }
+
+	function berita_pengumuman($limit){
 		$hasil=$this->db->query("select * from berita where kategori='pengumuman' order by tglpost DESC limit $limit");
-		return $hasil;
+		$data = $hasil->result_array();
+		return $data;
 	}
+	function berita_information($limit){
+		$hasil=$this->db->query("select * from berita where kategori='information' order by tglpost DESC limit $limit");
+		$data = $hasil->result_array();
+		return $data;
+	}
+
 	function getevent($kode){
 		$hasil=$this->db->query("select * from event where idevent='$kode'");
 		return $hasil;

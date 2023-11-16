@@ -57,6 +57,8 @@ class CI_Controller {
 	{
 		return self::$instance;
 	}
+
+	
 }
 // END Controller class
 

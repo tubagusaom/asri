@@ -25,8 +25,6 @@ class Hris extends CI_Controller{
 			redirect('administrator');
 		}
 
-
-
 	}
 
 

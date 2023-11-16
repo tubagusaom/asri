@@ -60,21 +60,10 @@
 		});
 	</script>
 
-	<!----->
-
-
 	<!--skycons-icons-->
 	<script src="<?php echo base_url().'web/js/skycons.js'?>"></script>
 	<!--//skycons-icons-->
 </head>
-<?php
-           function limit_words($string, $word_limit){
-               $words = explode(" ",$string);
-               return implode(" ",array_splice($words,0,$word_limit));
-           };
 
-       ?>
-
-			 <body class="skin-blue">
-
-			 	<div id="wrapper">
+<body class="skin-blue">
+	<div id="wrapper">
