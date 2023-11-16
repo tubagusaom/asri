@@ -11,21 +11,32 @@
 		<div class="content-mid">
 
 			<div class="mid-content-top">
-                <form action="<?php echo base_url().'backend/post/search'?>" method="post">
+                <!-- <form action="<?php echo base_url().'backend/post/search'?>" method="post">
 					<div class="input-group input-group-in">
 						<input type="text" name="keyword" class="form-control2 input-search" placeholder="Search...">
 						<span class="input-group-btn">
 							<button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
 						</span>
 					</div>
-				</form>
+				</form> -->
                 
-                <div class=" profile">
-                    <div class="four">
-                        <!-- <img src="<?php echo base_url().'web/images/404.png'?>" alt="" /> -->
+                <div class="profile" style="">
+                    <!-- <div class="four">
+                        <img src="<?php echo base_url().'web/images/404.png'?>" alt="" />
                         <p>Connect To HRIS ASRI <i class="fa fa-server"></i></p>
                         <a href="<?=base_url('backend/hris')?>" class="hvr-shutter-in-horizontal">Connect <i class="fa fa-plug"></i></a>
+                    </div> -->
+
+                    <div class="switch-holder">
+                        <div class="switch-label">
+                            <span>Connect To HRIS ASRI</span> <i class="fa fa-server"></i>
+                        </div>
+                        <div class="switch-toggle">
+                            <input type="checkbox" id="server">
+                            <label for="server"></label>
+                        </div>
                     </div>
+
                 </div>
                 
 				<!-- <div class="middle-content">
