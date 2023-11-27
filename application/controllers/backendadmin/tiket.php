@@ -12,7 +12,7 @@ class Tiket extends CI_Controller{
     }
 
 	function index(){
-		if($this->session->userdata('akses')=='3'){
+		if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='3'){
 			
 			$x['tiket']=$this->m_kontak->get_tiket();
 		    $x['dept']=$this->session->userdata('dept');
@@ -24,7 +24,7 @@ class Tiket extends CI_Controller{
 	}	
 
 		function perbulan(){
-			if($this->session->userdata('akses')=='3'){
+			if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='3'){
 			
 			$bulan=$this->input->post('bln');
 			 
@@ -47,7 +47,7 @@ class Tiket extends CI_Controller{
 		}
 		
 		function excel(){
-		   	if($this->session->userdata('akses')=='3'){
+		   	if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='3'){
 			
 			$bulan=$this->input->post('bln'); 
 			     	if($bulan == "ALL"){

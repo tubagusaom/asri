@@ -1,8 +1,10 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-$config['ldap_uri'] = array('ldaps://dc1.mycompany.com/', 'ldaps://dc2.mycompany.com/');
-$config['use_tls'] = false;  // Using SSL above, don't use TLS with it
-$config['search_base'] = 'DC=mycompany,DC=com';
+// $config['ldap_uri'] = 'http://localhost/asri_connect';
+// $config['use_tls'] = false;  // Using SSL above, don't use TLS with it
+
+// $config['search_base'] = 'DC=asri,DC=local';
+
 $config['user_search_base'] = 'CN=Users,DC=mycompany,DC=com';
 $config['group_search_base'] = 'CN=Users,DC=mycompany,DC=com';
 $config['user_object_class'] = 'user';
@@ -19,5 +21,16 @@ $config['roles'] = array(1 => 'User',
 $config['auditlog'] = 'application/logs/audit.log';
 
 
-/* End of file adldap.php */
-/* Location: ./system/application/config/adldap.php */
+
+
+
+$config['account_suffix']   = 'DC=asri,DC=local';
+$config['search_base']      = 'DC=asri,DC=local';
+$config['object_class']     = '(objectClass=person)(objectClass=user)';
+
+// $config['search_filter'] = '(name=ASGO)(name=CBA)(name=District8)(name=Fatmawati City Center)(name=Flix)(name=GGP-Mall)(name=HUBlife)(name=Menara Jakarta)(name=MOI)(name=PIK-Mall)(name=TARES)';
+
+$config['search_filter']    = '(name=ASGO)';
+
+/* End of file config_ad.php */
+/* Location: ./system/application/config/config_ad.php */

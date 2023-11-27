@@ -10,7 +10,7 @@ class Paket_tour extends CI_Controller{
         $this->load->library('upload');
     }
     function index(){
-	    if($this->session->userdata('akses')=='1'){
+	    if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1'){
 	    	$x['data']=$this->mpaket->tampil_paket();
 			$x['kat']=$this->mpaket->get_kategori();
 	        $this->load->view('backend/v_paket_tour',$x);
@@ -108,7 +108,7 @@ class Paket_tour extends CI_Controller{
 	}
 
     function hapus_paket(){
-	    if($this->session->userdata('akses')=='1'){
+	    if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1'){
 	        $id=$this->input->post('kode');
 	        $this->mpaket->hapus_paket($id);
 	        echo $this->session->set_flashdata('msg','success-hapus');

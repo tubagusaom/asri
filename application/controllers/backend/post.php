@@ -13,10 +13,10 @@ class Post extends CI_Controller{
 
 	function index(){
 
-		// var_dump($this->session->userdata('is_active')); die();
+		// var_dump($this->session->userdata('akses')); die();
 		// var_dump($this->auth->is_logged_in()); die();
 
-		if($this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
+		if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
 
 			if($this->session->userdata('is_active')=='1'){
 

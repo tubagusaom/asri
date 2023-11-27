@@ -10,7 +10,7 @@ class Wisata extends CI_Controller{
         $this->load->library('upload');
     }
     function index(){
-	    if($this->session->userdata('akses')=='1'){
+	    if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1'){
 	    	$x['data']=$this->mwisata->tampil_wisata();
 	        $this->load->view('backend/v_wisata',$x);
 	    }else{
@@ -102,7 +102,7 @@ class Wisata extends CI_Controller{
 	}
 
     function hapus_wisata(){
-	    if($this->session->userdata('akses')=='1'){
+	    if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1'){
 	        $id=$this->input->post('kode');
 	        $this->mwisata->hapus_wisata($id);
 	        echo $this->session->set_flashdata('msg','success-hapus');

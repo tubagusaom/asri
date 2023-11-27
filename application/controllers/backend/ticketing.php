@@ -10,7 +10,7 @@ class Ticketing extends CI_Controller{
 	}
 
 	function index(){
-	if($this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
+	if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
 				$data['divisi']=$this->m_kontak->getalluser();
 				$idad		   =$this->session->userdata('username');
 					$dept=$this->session->userdata('dept');
@@ -69,7 +69,7 @@ class Ticketing extends CI_Controller{
 	}
 
 	function sortir(){
-		if($this->session->userdata('akses')=='1'){
+		if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1'){
 				$data['divisi']=$this->m_kontak->getalluser();
 				$idad		   =$this->session->userdata('username');
 				$sortir		   = $this->input->post('sortir');
@@ -117,7 +117,7 @@ class Ticketing extends CI_Controller{
 	}
 	
 	function sortirexe(){
-		if($this->session->userdata('akses')=='1'){
+		if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1'){
 				$idad		   =$this->session->userdata('username');
 				$sortir		   = $this->input->post('sortir');
 				$get=$this->m_kontak->getuserwishlistseacrhexe($idad,$sortir);
@@ -132,7 +132,7 @@ class Ticketing extends CI_Controller{
 	}
 	
 	function tiketforyou(){
-		if($this->session->userdata('akses')=='1'){
+		if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1'){
 				$idad		   =$this->session->userdata('username');
 				
 				$get=$this->m_kontak->getuserexewishlist($idad);
@@ -147,7 +147,7 @@ class Ticketing extends CI_Controller{
 	}
 
 	function details($id){
-		if($this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
+		if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
 			    
 				$get=$this->m_kontak->getuserdetailwishlist($id);
 				$getgambar=$this->m_kontak->getusergambardetailwishlist($id);

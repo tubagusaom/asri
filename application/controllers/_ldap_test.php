@@ -18,7 +18,7 @@
     $pass = stripslashes($_POST["password"]);
     $srvr   = "10.10.32.2";
 
-   $conn=ldap_connect($srvr);
+    $conn=ldap_connect($srvr);
 
    if (!$conn) {
         $err = 'Gagal';

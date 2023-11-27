@@ -9,7 +9,7 @@ class Karyawan extends CI_Controller{
 		$this->load->model('mlogin');
 	}
 	function index(){
-	if($this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
+	if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
 		     $jum=$this->mlogin->count_event();
             $page=$this->uri->segment(4);
             if(!$page):

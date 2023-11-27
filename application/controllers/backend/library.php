@@ -13,7 +13,7 @@ class Library extends CI_Controller{
 	}
 
 	function index(){
-		if($this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
+		if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
                 $x['library']=$this->m_kontak->kat_library();
 
                 $id_admin=$this->session->userdata('idadmin');

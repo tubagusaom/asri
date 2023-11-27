@@ -33,7 +33,7 @@ class Hris extends CI_Controller{
 			$datax['password'] = $_GET['password'];
 
 		} else {
-			if($this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
+			if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
 
 				$id_admin=$this->session->userdata('idadmin');
 				$q=$this->db->query("SELECT * FROM admin WHERE idadmin='$id_admin'");

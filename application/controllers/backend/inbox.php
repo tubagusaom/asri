@@ -12,7 +12,7 @@ class Inbox extends CI_Controller{
 	}
 
 	function index(){
-		if($this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
+		if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1' | $this->session->userdata('akses')=='3'){
 				if($this->session->userdata('is_active')=='1'){
 				    $jum=$this->m_kontak->count_event();
             $page=$this->uri->segment(4);

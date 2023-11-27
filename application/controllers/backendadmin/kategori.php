@@ -9,7 +9,7 @@ class Kategori extends CI_Controller{
         $this->load->model('mkategori');
     }
     function index(){
-        if($this->session->userdata('akses')=='1'){
+        if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1'){
         	$x['data']=$this->mkategori->kategori();
             $this->load->view('backend/v_kategori',$x);
         }else{
@@ -38,7 +38,7 @@ class Kategori extends CI_Controller{
         }
     }
     function hapus_kategori(){
-        if($this->session->userdata('akses')=='1'){
+        if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1'){
             $id=$this->input->post('kode');
             $this->mkategori->hapus_kategori($id);
             echo $this->session->set_flashdata('msg','success-hapus');

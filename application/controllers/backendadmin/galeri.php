@@ -10,7 +10,7 @@ class Galeri extends CI_Controller{
         $this->load->library('upload');
     }
     function index(){
-        if($this->session->userdata('akses')=='1'){
+        if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1'){
         	$x['data']=$this->mgaleri->tampil_galeri();
             $x['alm']=$this->mgaleri->get_album();
             $this->load->view('backend/v_galeri',$x);
@@ -103,7 +103,7 @@ class Galeri extends CI_Controller{
     }
 
     function hapus_galeri(){
-        if($this->session->userdata('akses')=='1'){
+        if($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='1'){
             $id=$this->input->post('kode');
             $this->mgaleri->hapus_photo($id);
             echo $this->session->set_flashdata('msg','success-hapus');

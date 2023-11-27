@@ -82,6 +82,10 @@
               </a>
             </li>
 
+            <?php
+              if ($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='3') {
+            ?>
+
             <li class="<?=$this->uri->segment(2) == 'hris' ? 'active':'' ?>">
               <a href="<?php echo base_url().'backend/hris'?>">
                 <i class="fa fa-folder-open-o"></i> <span>Login HRIS</span>
@@ -99,6 +103,8 @@
                 </span>
               </a>
             </li>
+
+            <?php } ?>
 
             <li class="<?=$this->uri->segment(2) == 'ticketing' ? 'active':'' ?>">
               <a href="<?php echo base_url().'backend/ticketing'?>">

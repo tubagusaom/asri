@@ -35,9 +35,7 @@
  * @link http://adldap.sourceforge.net/
  */
 
-/**
- * Define the different types of account in AD
- */
+// Tentukan berbagai jenis akun di AD
 define ('ADLDAP_NORMAL_ACCOUNT', 805306368);
 define ('ADLDAP_WORKSTATION_TRUST', 805306369);
 define ('ADLDAP_INTERDOMAIN_TRUST', 805306370);
@@ -51,29 +49,30 @@ define ('ADLDAP_CONTAINER', 'CN');
 /**
 * Main adLDAP class
 * 
-* Can be initialised using $adldap = new adLDAP();
+* Dapat diinisialisasi menggunakan $adldap = new adLDAP();
 * 
-* Something to keep in mind is that Active Directory is a permissions
-* based directory. If you bind as a domain user, you can't fetch as
-* much information on other users as you could as a domain admin.
+* Sesuatu yang perlu diingat adalah bahwa Direktori Aktif adalah izin
+* direktori berbasis. Jika Anda mengikat sebagai pengguna domain, Anda tidak dapat mengambil sebagai
+* sebanyak mungkin informasi tentang pengguna lain sebagai admin domain.
 * 
-* Before asking questions, please read the Documentation at
+* Sebelum mengajukan pertanyaan, harap membaca Dokumentasi di
 * http://adldap.sourceforge.net/wiki/doku.php?id=api
 */
-class Auth_AD {
+
+class adLDAP {
     /**
-    * The account suffix for your domain, can be set when the class is invoked
+    * Akhiran akun untuk domain Anda, dapat disetel saat kelas dipanggil
     * 
     * @var string
     */   
-	protected $_account_suffix = "@mydomain.local";
+	protected $_account_suffix = "@asri.local";
     
     /**
-    * The base dn for your domain
+    * DN dasar untuk domain Anda
     * 
     * @var string
     */
-	protected $_base_dn = "DC=mydomain,DC=local"; 
+	protected $_base_dn = "DC=asri,DC=local";
 	
     /**
     * Array of domain controllers. Specifiy multiple controllers if you
@@ -81,10 +80,10 @@ class Auth_AD {
     * 
     * @var array
     */
-    protected $_domain_controllers = array ("dc01.mydomain.local");
+    protected $_domain_controllers = array ("asri.local");
 	
     /**
-    * Optional account with higher privileges for searching
+    * Akun opsional dengan hak istimewa lebih tinggi untuk pencarian
     * This should be set to a domain admin account
     * 
     * @var string
@@ -94,17 +93,17 @@ class Auth_AD {
     protected $_ad_password=NULL;
     
     /**
-    * AD does not return the primary group. http://support.microsoft.com/?kbid=321360
-    * This tweak will resolve the real primary group. 
-    * Setting to false will fudge "Domain Users" and is much faster. Keep in mind though that if
-    * someone's primary group is NOT domain users, this is obviously going to mess up the results
+    * AD tidak mengembalikan grup utama. http://support.microsoft.com/?kbid=321360
+    * Perubahan ini akan menyelesaikan grup utama yang sebenarnya.
+    * Menyetel ke false akan memalsukan "Pengguna Domain" dan jauh lebih cepat. Namun perlu diingat bahwa jika
+    * grup utama seseorang BUKAN pengguna domain, hal ini jelas akan mengacaukan hasilnya
     * 
     * @var bool
     */
 	protected $_real_primarygroup=true;
 	
     /**
-    * Use SSL (LDAPS), your server needs to be setup, please see
+    * Gunakan SSL (LDAPS), server Anda perlu diatur, silakan lihat
     * http://adldap.sourceforge.net/wiki/doku.php?id=ldap_over_ssl
     * 
     * @var bool
@@ -112,27 +111,28 @@ class Auth_AD {
 	protected $_use_ssl=false;
     
     /**
-    * Use TLS
-    * If you wish to use TLS you should ensure that $_use_ssl is set to false and vice-versa
+    * Gunakan TLS
+    * Jika Anda ingin menggunakan TLS, Anda harus memastikan bahwa $_use_ssl disetel ke false dan sebaliknya
     * 
     * @var bool
     */
     protected $_use_tls=false;
     
     /**
-    * When querying group memberships, do it recursively 
-    * eg. User Fred is a member of Group A, which is a member of Group B, which is a member of Group C
-    * user_ingroup("Fred","C") will returns true with this option turned on, false if turned off     
+    * Saat menanyakan keanggotaan grup, lakukan secara rekursif 
+    * misalnya. Pengguna Fred merupakan anggota Grup A, yang merupakan anggota Grup B, 
+    * yang merupakan anggota Grup C user_ingroup("Fred","C")
+    * akan mengembalikan nilai true jika opsi ini diaktifkan, false jika dimatikan     
     * 
     * @var bool
     */
 	protected $_recursive_groups=true;
 	
-	// You should not need to edit anything below this line
+	// Anda tidak perlu mengedit apa pun di bawah baris ini
 	//******************************************************************************************
 	
 	/**
-    * Connection and bind default variables
+    * Koneksi dan ikat variabel default
     * 
     * @var mixed
     * @var mixed
@@ -148,7 +148,7 @@ class Auth_AD {
     */
 	protected $_ci;
     /**
-    * Getters and Setters
+    * Pengambil dan Penyetel
     */
     
     /**
@@ -178,20 +178,20 @@ class Auth_AD {
     * @param array $_domain_controllers
     * @return void
     */
-    public function set_domain_controllers(array $_domain_controllers)
-    {
-          $this->_domain_controllers = $_domain_controllers;
-    }
+    // public function set_domain_controllers(array $_domain_controllers)
+    // {
+    //       $this->_domain_controllers = $_domain_controllers;
+    // }
 
     /**
     * Get the list of domain controllers
     * 
     * @return void
     */
-    public function get_domain_controllers()
-    {
-          return $this->_domain_controllers;
-    }
+    // public function get_domain_controllers()
+    // {
+    //       return $this->_domain_controllers;
+    // }
     
     /**
     * Set the username of an account with higher priviledges
@@ -319,6 +319,11 @@ class Auth_AD {
           return $this->_recursive_groups;
     }
 
+
+
+
+
+
     /**
     * Default Constructor
     * 
@@ -330,15 +335,15 @@ class Auth_AD {
     */
     function __construct($options=array()){
 		
-		//Load the adladap config file if no config was sent
+		//Muat file konfigurasi adladap jika tidak ada konfigurasi yang dikirim
 		if(count($options) == 0){
 			$this->_ci =& get_instance();
-			$this->_ci->config->load('adldap', true);
-			$options = $this->_ci->config->item('adldap');
+			$this->_ci->config->load('config_ad', true);
+			$options = $this->_ci->config->item('config_ad');
 		}
 		
         // You can specifically overide any of the default configuration options setup above
-        if (count($options)>0){
+        if (count($options) > 0){
             if (array_key_exists("account_suffix",$options)){ $this->_account_suffix=$options["account_suffix"]; }
             if (array_key_exists("base_dn",$options)){ $this->_base_dn=$options["base_dn"]; }
             if (array_key_exists("domain_controllers",$options)){ $this->_domain_controllers=$options["domain_controllers"]; }
@@ -354,7 +359,11 @@ class Auth_AD {
             throw new adLDAPException('No LDAP support for PHP.  See: http://www.php.net/ldap');
         }
 
-        return $this->connect();
+        // $dxxxx = $options['account_suffix'];
+
+        // var_dump($this->_account_suffix); die();
+
+        return $this->connect($options);
     }
 
     /**
@@ -371,41 +380,59 @@ class Auth_AD {
     * 
     * @return bool
     */
-    public function connect() {
-        // Connect to the AD/LDAP server as the username/password
-        $dc=$this->random_controller();
-        if ($this->_use_ssl){
-            $this->_conn = ldap_connect("ldaps://".$dc, 636);
-        } else {
-            $this->_conn = ldap_connect($dc);
-        }
-               
-        // Set some ldap options for talking to AD
-        ldap_set_option($this->_conn, LDAP_OPT_PROTOCOL_VERSION, 3);
-        ldap_set_option($this->_conn, LDAP_OPT_REFERRALS, 0);
-        
-        if ($this->_use_tls) {
-            ldap_start_tls($this->_conn);
-        }
-               
-        // Bind as a domain admin if they've set it up
-        if ($this->_ad_username!=NULL && $this->_ad_password!=NULL){
-            $this->_bind = @ldap_bind($this->_conn,$this->_ad_username.$this->_account_suffix,$this->_ad_password);
-            if (!$this->_bind){
-                if ($this->_use_ssl && !$this->_use_tls){
-                    // If you have problems troubleshooting, remove the @ character from the ldap_bind command above to get the actual error message
-                    throw new adLDAPException('Bind to Active Directory failed. Either the LDAPs connection failed or the login credentials are incorrect. AD said: ' . $this->get_last_error());
-                } else {
-                    throw new adLDAPException('Bind to Active Directory failed. Check the login credentials and/or server details. AD said: ' . $this->get_last_error());
-                }
+    public function connect($option_config) {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            // Connect to the AD/LDAP server as the username/password
+            // $dc=$this->random_controller();
+
+
+            // if ($this->_use_ssl){
+            //     $this->_conn = ldap_connect("10.10.32.2");
+            // } else {
+            //     $this->_conn = ldap_connect($dc);
+            // }
+
+            $this->_ad_username = strip_tags($_POST["username"]);
+            $this->_ad_password = stripslashes($_POST["password"]);
+            $this->_conn = ldap_connect($_POST["server"]);
+                   
+            // Set some ldap options for talking to AD
+            ldap_set_option($this->_conn, LDAP_OPT_PROTOCOL_VERSION, 3);
+            ldap_set_option($this->_conn, LDAP_OPT_REFERRALS, 0);
+            
+            // if ($this->_use_tls) {
+            //     ldap_start_tls($this->_conn);
+            // }
+                   
+            // Bind as a domain admin if they've set it up
+            // if ($this->_ad_username!=NULL && $this->_ad_password!=NULL){
+            //     $this->_bind = @ldap_bind($this->_conn,$this->_ad_username.$this->_account_suffix,$this->_ad_password);
+            //     if (!$this->_bind){
+            //         if ($this->_use_ssl && !$this->_use_tls){
+            //             // Jika Anda mengalami masalah pemecahan masalah, hapus karakter @ dari perintah ldap_bind di atas untuk mendapatkan pesan kesalahan yang sebenarnya
+            //             throw new adLDAPException('Bind to Active Directory failed. Either the LDAPs connection failed or the login credentials are incorrect. AD said: ' . $this->get_last_error());
+            //         } else {
+            //             throw new adLDAPException('Bind to Active Directory failed. Check the login credentials and/or server details. AD said: ' . $this->get_last_error());
+            //         }
+            //     }
+            // }
+            
+            if ($this->_base_dn == NULL) {
+                $this->_base_dn = $this->find_base_dn();
             }
+            
+            // var_dump($option_config['search_base']); die();
+
+            return (true);
+
+        } else {
+            return (false);
+
+            // var_dump($option_config); die();
         }
-        
-        if ($this->_base_dn == NULL) {
-            $this->_base_dn = $this->find_base_dn();   
-        }
-        
-        return (true);
+
     }
     
     /**
@@ -2239,7 +2266,7 @@ class Auth_AD {
     protected function encode_password($password){
         $password="\"".$password."\"";
         $encoded="";
-        for ($i=0; $i <strlen($password); $i++){ $encoded.="{$password{$i}}\000"; }
+        for ($i=0; $i <strlen($password); $i++){ $encoded.="$password{$i}\000"; }
         return ($encoded);
     }
     
@@ -2264,10 +2291,10 @@ class Auth_AD {
     * 
     * @return string
     */
-    protected function random_controller(){
-        mt_srand(doubleval(microtime()) * 100000000); // For older PHP versions
-        return ($this->_domain_controllers[array_rand($this->_domain_controllers)]);
-    }
+    // protected function random_controller(){
+    //     mt_srand(doubleval(microtime()) * 100000000); // For older PHP versions
+    //     return ($this->_domain_controllers[array_rand($this->_domain_controllers)]);
+    // }
     
     /**
     * Account control options

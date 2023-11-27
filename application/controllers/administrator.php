@@ -25,45 +25,52 @@ class Administrator extends CI_Controller{
         $p=$password;
         $cadmin=$this->mlogin->cekadmin($u,$p);
 
-        // var_dump(md5($password)); die();
+        // var_dump(md5('root')); die();
 
         if($cadmin->num_rows > 0){
 
-         $this->session->set_userdata('masuk',true);
-         $this->session->set_userdata('user',$u);
-         $xcadmin=$cadmin->row_array();
+        $this->session->set_userdata('masuk',true);
+        $this->session->set_userdata('user',$u);
+        $xcadmin=$cadmin->row_array();
 
-         // var_dump($xcadmin['level']); die();
+        $idadmin=$xcadmin['idadmin'];
+        $active=$xcadmin['is_active'];
+        $user=$xcadmin['username'];
+        $photo=$xcadmin['photo'];
+        $dept=$xcadmin['dept'];
+        $level=$xcadmin['level'];
 
-         if($xcadmin['level']=='1'){
-            $this->session->set_userdata('akses','1');
-            $idadmin=$xcadmin['idadmin'];
-            $active=$xcadmin['is_active'];
-            $user=$xcadmin['username'];
-            $photo=$xcadmin['photo'];
-            $dept=$xcadmin['dept'];
+        // var_dump($xcadmin['level']); die();
 
-            $this->session->set_userdata('is_logged_in',1);
-            $this->session->set_userdata('idadmin',$idadmin);
-            $this->session->set_userdata('is_active',$active);
-            $this->session->set_userdata('username',$user);
-            $this->session->set_userdata('photo',$photo);
-            $this->session->set_userdata('dept',$dept);
-         }elseif($xcadmin['level']=='3'){
-            $this->session->set_userdata('akses','3');
-            $idadmin=$xcadmin['idadmin'];
-            $active=$xcadmin['is_active'];
-            $user=$xcadmin['username'];
-            $photo=$xcadmin['photo'];
-            $dept=$xcadmin['dept'];
+        $this->session->set_userdata('is_logged_in',1);
+        $this->session->set_userdata('idadmin',$idadmin);
+        $this->session->set_userdata('is_active',$active);
+        $this->session->set_userdata('username',$user);
+        $this->session->set_userdata('photo',$photo);
+        $this->session->set_userdata('dept',$dept);
+        $this->session->set_userdata('akses',$level);
 
-            $this->session->set_userdata('is_logged_in',1);
-            $this->session->set_userdata('idadmin',$idadmin);
-            $this->session->set_userdata('is_active',$active);
-            $this->session->set_userdata('username',$user);
-            $this->session->set_userdata('photo',$photo);
-            $this->session->set_userdata('dept',$dept);
-         }
+         // if($xcadmin['level']=='1'){
+
+         //    $this->session->set_userdata('is_logged_in',1);
+         //    $this->session->set_userdata('idadmin',$idadmin);
+         //    $this->session->set_userdata('is_active',$active);
+         //    $this->session->set_userdata('username',$user);
+         //    $this->session->set_userdata('photo',$photo);
+         //    $this->session->set_userdata('dept',$dept);
+         //    $this->session->set_userdata('akses',$xcadmin['level']);
+
+         // }elseif($xcadmin['level']=='3' | $xcadmin['level']=='0'){
+
+         //    $this->session->set_userdata('is_logged_in',1);
+         //    $this->session->set_userdata('idadmin',$idadmin);
+         //    $this->session->set_userdata('is_active',$active);
+         //    $this->session->set_userdata('username',$user);
+         //    $this->session->set_userdata('photo',$photo);
+         //    $this->session->set_userdata('dept',$dept);
+         //    $this->session->set_userdata('akses',$xcadmin['level']);
+
+         // }
 
 
          // if($xcadmin['level']=='2'){
@@ -79,15 +86,29 @@ class Administrator extends CI_Controller{
          // } //Front Office
         }
 
+        // $sessiondata['is_logged_in'] = $this->session->userdata('is_logged_in');
+        // $sessiondata['idadmin'] = $this->session->userdata('idadmin');
+        // $sessiondata['is_active'] = $this->session->userdata('is_active');
+        // $sessiondata['username'] = $this->session->userdata('username');
+        // $sessiondata['photo'] = $this->session->userdata('photo');
+        // $sessiondata['dept'] = $this->session->userdata('dept');
+        // $sessiondata['akses'] = $this->session->userdata('akses');
+
+        // var_dump($sessiondata); die();
+
         if($this->session->userdata('masuk')==true){
-            redirect('administrator/berhasillogin');
+            // redirect('administrator/berhasillogin');
+            $this->berhasillogin();
         }else{
-            redirect('administrator/gagallogin');
+            // redirect('administrator/gagallogin');
+            $this->gagallogin();
         }
     }
         function berhasillogin(){
-            redirect('backend/post');
+
+            redirect('backend/post/');
         }
+
         function gagallogin(){
             $url=base_url('administrator');
             echo $this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert"><span class="fa fa-close"></span></button> Username Atau Password Salah</div>');
