@@ -1,0 +1,5 @@
+{
+    "require": {
+        "loginradius/php-sdk": "11.5.0"
+    }
+}

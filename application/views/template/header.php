@@ -11,8 +11,8 @@
 	<meta name="author" content="aom.my.id">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="<?php echo base_url().'gambar/icon.png'?>" type="image/x-icon" />
-	<link rel="apple-touch-icon" href="<?php echo base_url().'gambar/icon.png'?>">
+	<link rel="shortcut icon" href="<?php echo base_url().'gambar/asri-connect.png'?>" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="<?php echo base_url().'gambar/asri-connect.png'?>">
 
 	<script type="application/x-javascript">
 		addEventListener("load", function() {

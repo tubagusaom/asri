@@ -6,7 +6,16 @@ class Administrator extends CI_Controller{
     }
     
     function index(){
-        $this->load->view('front/v_login');
+
+        // var_dump($this->auth->is_logged_in()); die();
+
+        if (!$this->auth->is_logged_in()) {
+            $this->load->view('front/v_login');
+        } else {
+            redirect(base_url() . 'backend/post');
+        }
+
+        
     }
 
     function auth(){
@@ -26,32 +35,35 @@ class Administrator extends CI_Controller{
 
          // var_dump($xcadmin['level']); die();
 
-         if($xcadmin['level']=='1')
+         if($xcadmin['level']=='1'){
             $this->session->set_userdata('akses','1');
             $idadmin=$xcadmin['idadmin'];
             $active=$xcadmin['is_active'];
             $user=$xcadmin['username'];
             $photo=$xcadmin['photo'];
             $dept=$xcadmin['dept'];
+
+            $this->session->set_userdata('is_logged_in',1);
             $this->session->set_userdata('idadmin',$idadmin);
             $this->session->set_userdata('is_active',$active);
             $this->session->set_userdata('username',$user);
             $this->session->set_userdata('photo',$photo);
             $this->session->set_userdata('dept',$dept);
-
-
-         if($xcadmin['level']=='3')
+         }elseif($xcadmin['level']=='3'){
             $this->session->set_userdata('akses','3');
             $idadmin=$xcadmin['idadmin'];
             $active=$xcadmin['is_active'];
             $user=$xcadmin['username'];
             $photo=$xcadmin['photo'];
             $dept=$xcadmin['dept'];
+
+            $this->session->set_userdata('is_logged_in',1);
             $this->session->set_userdata('idadmin',$idadmin);
             $this->session->set_userdata('is_active',$active);
             $this->session->set_userdata('username',$user);
             $this->session->set_userdata('photo',$photo);
             $this->session->set_userdata('dept',$dept);
+         }
 
 
          // if($xcadmin['level']=='2'){
@@ -82,9 +94,21 @@ class Administrator extends CI_Controller{
             redirect($url);
         }
         function logout(){
+
+            $data_session['is_logged_in'] = $this->session->userdata('is_logged_in');
+            $data_session['idadmin'] = $this->session->userdata('idadmin');
+            $data_session['is_active'] = $this->session->userdata('is_active');
+            $data_session['username'] = $this->session->userdata('username');
+            $data_session['photo'] = $this->session->userdata('photo');
+            $data_session['dept'] = $this->session->userdata('dept');
+
+            // var_dump($data_session); die();
+
+            $this->session->unset_userdata($data_session);
             $this->session->sess_destroy();
-            $url=base_url('administrator');
-            redirect($url);
+
+            // $url=base_url('administrator');
+            redirect(base_url());
         }
 
 }
