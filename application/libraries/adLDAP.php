@@ -1,4 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 /**
  * PHP LDAP CLASS FOR MANIPULATING ACTIVE DIRECTORY 
  * Version 3.3.1
@@ -36,15 +37,15 @@
  */
 
 // Tentukan berbagai jenis akun di AD
-define ('ADLDAP_NORMAL_ACCOUNT', 805306368);
-define ('ADLDAP_WORKSTATION_TRUST', 805306369);
-define ('ADLDAP_INTERDOMAIN_TRUST', 805306370);
-define ('ADLDAP_SECURITY_GLOBAL_GROUP', 268435456);
-define ('ADLDAP_DISTRIBUTION_GROUP', 268435457);
-define ('ADLDAP_SECURITY_LOCAL_GROUP', 536870912);
-define ('ADLDAP_DISTRIBUTION_LOCAL_GROUP', 536870913);
-define ('ADLDAP_FOLDER', 'OU');
-define ('ADLDAP_CONTAINER', 'CN');
+// define ('ADLDAP_NORMAL_ACCOUNT', 805306368);
+// define ('ADLDAP_WORKSTATION_TRUST', 805306369);
+// define ('ADLDAP_INTERDOMAIN_TRUST', 805306370);
+// define ('ADLDAP_SECURITY_GLOBAL_GROUP', 268435456);
+// define ('ADLDAP_DISTRIBUTION_GROUP', 268435457);
+// define ('ADLDAP_SECURITY_LOCAL_GROUP', 536870912);
+// define ('ADLDAP_DISTRIBUTION_LOCAL_GROUP', 536870913);
+// define ('ADLDAP_FOLDER', 'OU');
+// define ('ADLDAP_CONTAINER', 'CN');
 
 /**
 * Main adLDAP class
@@ -350,9 +351,9 @@ class adLDAP {
             if (array_key_exists("ad_username",$options)){ $this->_ad_username=$options["ad_username"]; }
             if (array_key_exists("ad_password",$options)){ $this->_ad_password=$options["ad_password"]; }
             if (array_key_exists("real_primarygroup",$options)){ $this->_real_primarygroup=$options["real_primarygroup"]; }
-            if (array_key_exists("use_ssl",$options)){ $this->_use_ssl=$options["use_ssl"]; }
-            if (array_key_exists("use_tls",$options)){ $this->_use_tls=$options["use_tls"]; }
             if (array_key_exists("recursive_groups",$options)){ $this->_recursive_groups=$options["recursive_groups"]; }
+            // if (array_key_exists("use_ssl",$options)){ $this->_use_ssl=$options["use_ssl"]; }
+            // if (array_key_exists("use_tls",$options)){ $this->_use_tls=$options["use_tls"]; }
         }
         
         if ($this->ldap_supported() === false) {
@@ -361,7 +362,7 @@ class adLDAP {
 
         // $dxxxx = $options['account_suffix'];
 
-        // var_dump($this->_account_suffix); die();
+        // var_dump($this->_real_primarygroup); die();
 
         return $this->connect($options);
     }
@@ -375,12 +376,16 @@ class adLDAP {
     */
     function __destruct(){ $this->close(); }
 
+    public function testlibraryad() {
+        var_dump('testlibraryad OK'); die();
+    }
+
     /**
     * Connects and Binds to the Domain Controller
     * 
     * @return bool
     */
-    public function connect($option_config) {
+    public function connect() {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -393,10 +398,11 @@ class adLDAP {
             // } else {
             //     $this->_conn = ldap_connect($dc);
             // }
-
-            $this->_ad_username = strip_tags($_POST["username"]);
-            $this->_ad_password = stripslashes($_POST["password"]);
+            
+            $this->_conn = ldap_connect($_POST["domain"]);
             $this->_conn = ldap_connect($_POST["server"]);
+            $this->_ad_username = strip_tags($_POST["user"]);
+            $this->_ad_password = stripslashes($_POST["password"]);
                    
             // Set some ldap options for talking to AD
             ldap_set_option($this->_conn, LDAP_OPT_PROTOCOL_VERSION, 3);
@@ -407,25 +413,32 @@ class adLDAP {
             // }
                    
             // Bind as a domain admin if they've set it up
-            // if ($this->_ad_username!=NULL && $this->_ad_password!=NULL){
-            //     $this->_bind = @ldap_bind($this->_conn,$this->_ad_username.$this->_account_suffix,$this->_ad_password);
-            //     if (!$this->_bind){
-            //         if ($this->_use_ssl && !$this->_use_tls){
-            //             // Jika Anda mengalami masalah pemecahan masalah, hapus karakter @ dari perintah ldap_bind di atas untuk mendapatkan pesan kesalahan yang sebenarnya
-            //             throw new adLDAPException('Bind to Active Directory failed. Either the LDAPs connection failed or the login credentials are incorrect. AD said: ' . $this->get_last_error());
-            //         } else {
-            //             throw new adLDAPException('Bind to Active Directory failed. Check the login credentials and/or server details. AD said: ' . $this->get_last_error());
-            //         }
-            //     }
-            // }
+            if ($this->_ad_username!=NULL && $this->_ad_password!=NULL) {
+                $this->_bind = @ldap_bind($this->_conn,$this->_ad_username,$this->_ad_password);
+                if (!$this->_bind){
+                    // if ($this->_use_ssl && !$this->_use_tls){
+                    //     // Jika Anda mengalami masalah pemecahan masalah, hapus karakter @ dari perintah ldap_bind di atas untuk mendapatkan pesan kesalahan yang sebenarnya
+                    //     throw new adLDAPException('Bind to Active Directory failed. Either the LDAPs connection failed or the login credentials are incorrect. AD said: ' . $this->get_last_error());
+                    // } else {
+                    //     throw new adLDAPException('Bind to Active Directory failed. Check the login credentials and/or server details. AD said: ' . $this->get_last_error());
+                    // }
+
+                    throw new adLDAPException('Bind to Active Directory failed. Either the LDAPs connection failed or the login credentials are incorrect. AD said: ' . $this->get_last_error());
+                }
+                // else {
+                //     if ($this->_base_dn == NULL) {
+                //         $this->_base_dn = $this->find_base_dn();
+                //     }
+                // }
+            }
             
             if ($this->_base_dn == NULL) {
                 $this->_base_dn = $this->find_base_dn();
             }
             
-            // var_dump($option_config['search_base']); die();
+            var_dump($this->_base_dn); die();
 
-            return (true);
+            // return (true);
 
         } else {
             return (false);

@@ -12,7 +12,7 @@ class Active_directory extends CI_Controller{
 		$this->load->model('m_active_directory');
 	}
 
-    function index(){
+    function index() {
         if($this->session->userdata('akses') == '0' | $this->session->userdata('akses') == '1' | $this->session->userdata('akses') == '3'){
             if($this->session->userdata('is_active')=='1'){
                 
@@ -39,8 +39,9 @@ class Active_directory extends CI_Controller{
     }
 
     function auth_ad() {
+        // var_dump('auth'); die();
 
+        $this->adldap->connect();
     }
-
 
 }

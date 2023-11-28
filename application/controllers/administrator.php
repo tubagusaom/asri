@@ -27,7 +27,7 @@ class Administrator extends CI_Controller{
 
         // var_dump(md5('root')); die();
 
-        if($cadmin->num_rows > 0){
+        if($cadmin->num_rows > 0) {
 
         $this->session->set_userdata('masuk',true);
         $this->session->set_userdata('user',$u);

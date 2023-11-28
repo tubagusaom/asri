@@ -3190,12 +3190,16 @@ ul.dropdown-menu.dropdown-menu-right {
 }
 }
 
+#form-loginhris .header-form {
+
+}
+
 
 .switch-holder {
     display: flex;
     padding: 10px 20px;
     border-radius: 10px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     box-shadow: -8px -8px 15px rgba(255,255,255,.7), 5px 5px 5px rgba(0,0,0, .3), inset 8px 8px 15px rgba(255,255,255,.7), inset 5px 5px 10px rgba(0,0,0, .3);
     justify-content: space-between;
     align-items: center;
@@ -3223,7 +3227,7 @@ ul.dropdown-menu.dropdown-menu-right {
 .switch-toggle input[type="checkbox"] + label {
     position: relative;
     display: inline-block;
-    width: 200px;
+    width: 145px;
     height: 40px;
     border-radius: 20px;
     margin: 0;
@@ -3242,7 +3246,7 @@ ul.dropdown-menu.dropdown-menu-right {
     line-height: 25px;
     top: 8px;
     left: 8px;
-    width: 90px;
+    width: 130px;
     height: 25px;
     border-radius: 20px;
     background-color: #f46b6b;
@@ -3252,7 +3256,7 @@ ul.dropdown-menu.dropdown-menu-right {
 }
 
 .switch-toggle input[type="checkbox"]:checked + label::before {
-    left: 50%;
+    /* left: 50%; */
     content: '▤';
     color: #fff;
     background-color: #00b33c;

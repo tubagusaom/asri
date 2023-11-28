@@ -8,7 +8,7 @@
 			</h2>
 		</div>
 
-		<div class="content-mid">
+		<div class="content-mid" style="min-height:850px">
 
 			<div class="mid-content-top">
                 <!-- <form action="<?php echo base_url().'backend/post/search'?>" method="post">
@@ -19,13 +19,14 @@
 						</span>
 					</div>
 				</form> -->
-                
-                <div class="profile" style="">
-                    <!-- <div class="four">
+
+				<!-- <div class="four">
                         <img src="<?php echo base_url().'web/images/404.png'?>" alt="" />
                         <p>Connect To HRIS ASRI <i class="fa fa-server"></i></p>
                         <a href="<?=base_url('backend/hris')?>" class="hvr-shutter-in-horizontal">Connect <i class="fa fa-plug"></i></a>
                     </div> -->
+                
+                <div class="content">
 
                     <div class="switch-holder">
                         <div class="switch-label">
@@ -34,10 +35,60 @@
                         <div class="switch-toggle">
                             <input type="checkbox" id="server">
                             <label for="server"></label>
+							<!-- <button type="submit" class="btn btn-block btn-primary" style="border-radius:4px;">
+								Connect <i class="fa fa-plug"></i>
+							</button> -->
                         </div>
                     </div>
 
                 </div>
+
+				<!-- <div class="row"> -->
+					<div id="form-loginhris">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button id="close-1" type="button" class="close">&times;</button>
+								<h4 class="modal-title">Login To HRIS ASRI</h4>
+							</div>
+
+							<div class="modal-body">
+								<form action="<?=base_url('backend/active_directory/auth_ad')?>" method="POST">
+									<div class="input-group">
+										<span class="input-group-addon">Domain</span>
+										<input id="domain" type="text" class="form-control" name="domain" placeholder="Domain">
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon">Server &nbsp;&nbsp;</span>
+										<input id="server" type="text" class="form-control" name="server" placeholder="Server">
+									</div>
+
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user"></i></span>
+										<input id="user" type="text" class="form-control" name="user" placeholder="User">
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+										<input id="password" type="password" class="form-control" name="password" placeholder="Password">
+									</div>
+									
+							</div>
+							
+							<div class="modal-footer">
+								<div class="row col-md-10 float-left">
+										<button type="submit" class="btn btn-block btn-primary" style="border-radius:4px;">
+											Connect <i class="fa fa-plug"></i>
+										</button>
+									</div>
+
+									<div class="row col-md-2 float-right">
+										<button id="close-2" type="button" class="btn btn-block btn-default" style="border-radius: 4px;">Close</button>
+									</div>
+							</div>
+							</form>
+						</div>
+					</div>
+				<!-- </div> -->
+				
                 
 				<!-- <div class="middle-content">
 					<div class="top_place section_padding">
@@ -47,23 +98,36 @@
 
 			</div>
             
-			<div class="clearfix"></div>
-
-			<!-- <div class="content-top">
-
-				<div class="col-md-12">
-					<div class="float-right">
-
-						<div class="btn-group">
-							Page
-						</div>
-
-					</div>
-				</div>
-
-				<div class="clearfix"></div>
-			</div> -->
+			<!-- <div class="clearfix"></div> -->
 
 		</div>
+
+		<script>
+			var btnSwitch = $('.switch-holder');
+			var formLogin = $('#form-loginhris');
+			formLogin.hide();
+
+			$("#server").change(function() {
+				if($(this).prop('checked')) {
+					formLogin.show();
+					btnSwitch.hide();
+				} else {
+					formLogin.hide();
+				}
+			});
+
+			$("#close-1").click(function(){
+				formLogin.hide();
+				btnSwitch.show();
+				$("#server").prop('checked',false);
+			});
+
+			$("#close-2").click(function(){
+				formLogin.hide();
+				btnSwitch.show();
+				$("#server").prop('checked',false);
+			});
+			
+		</script>
 
 		

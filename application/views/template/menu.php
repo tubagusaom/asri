@@ -64,6 +64,15 @@
               </a>
             </li>
 
+            <li class="<?=$this->uri->segment(2) == 'ticketing' ? 'active':'' ?>">
+              <a href="<?php echo base_url().'backend/ticketing'?>">
+                <i class="fa fa-headphones"></i> <span>Ticketing</span>
+                <span class="pull-right-container">
+                  <small class="label pull-right"></small>
+                </span>
+              </a>
+            </li>
+
             <li class="<?=$this->uri->segment(2) == 'library' ? 'active':'' ?>">
               <a href="<?php echo base_url().'backend/library'?>">
                 <i class="fa fa-book"></i> <span>Library</span>
@@ -82,18 +91,16 @@
               </a>
             </li>
 
-            <?php
-              if ($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='3') {
-            ?>
+            <?php if ($this->session->userdata('akses')=='0' | $this->session->userdata('akses')=='3') { ?>
 
-            <li class="<?=$this->uri->segment(2) == 'hris' ? 'active':'' ?>">
+            <!-- <li class="<?=$this->uri->segment(2) == 'hris' ? 'active':'' ?>">
               <a href="<?php echo base_url().'backend/hris'?>">
                 <i class="fa fa-folder-open-o"></i> <span>Login HRIS</span>
                 <span class="pull-right-container">
                   <small class="label pull-right"></small>
                 </span>
               </a>
-            </li>
+            </li> -->
 
             <li class="<?=$this->uri->segment(2) == 'active_directory' ? 'active':'' ?>">
               <a href="<?php echo base_url().'backend/active_directory'?>">
@@ -105,15 +112,6 @@
             </li>
 
             <?php } ?>
-
-            <li class="<?=$this->uri->segment(2) == 'ticketing' ? 'active':'' ?>">
-              <a href="<?php echo base_url().'backend/ticketing'?>">
-                <i class="fa fa-headphones"></i> <span>Ticketing</span>
-                <span class="pull-right-container">
-                  <small class="label pull-right"></small>
-                </span>
-              </a>
-            </li>
 
             <li class="<?=$this->uri->segment(2) == 'inbox' ? 'active':'' ?>">
               <a href="<?php echo base_url().'backend/inbox'?>">
